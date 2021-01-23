@@ -1,0 +1,17 @@
+GET http://localhost:8080/getAllList
+####
+
+POST http://localhost:8080/addList
+Content-Type: application/json
+
+{
+    "listName":"PRathmesh Kulkarni",
+}
+####
+
+DELETE http://localhost:8080/deleteList
+Content-Type: application/json
+
+{
+    "listUniqueNumber":"1"
+}
