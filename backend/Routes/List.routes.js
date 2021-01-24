@@ -1,12 +1,37 @@
 const router = require("express").Router();
 const createError = require("http-errors");
 const List = require("../models/list.model");
-const { listSchema } = require("../helper/validation__schema");
+const { userSchema } = require("../helper/validation__schema");
+
+router.post("/register", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const result = await userSchema.validateAsync(req.body);
+    const doesEmailExist = await List.findOne({
+      email: result.email,
+    });
+    if (doesEmailExist)
+      throw createError.Conflict("Email Address already exist");
+    const doesMobileExist = await List.findOne({
+      mobile: result.mobile,
+    });
+    console.log("yes = ", doesMobileExist);
+    if (doesMobileExist) throw createError.Conflict("Mobile mber exist");
+    const user = await new List(result);
+    await user.save();
+    console.log("user = ", user);
+    res.status(200).send(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/login", async (req, res, next) => {});
 
 router.post("/addList", async (req, res, next) => {
   try {
     console.log("Body = ", req.body);
-    const result = await listSchema.validateAsync(req.body);
+    const result = await userSchema.validateAsync(req.body);
     console.log("result = ", result);
     const list = await new List(result);
     console.log("new list = ", list);
@@ -31,7 +56,7 @@ router.get("/getAllList", async (req, res, next) => {
 router.delete("/deleteList", async (req, res, next) => {
   try {
     const list = await List.findOneAndDelete({
-      listUniqueNumber: req.body.listUniqueNumber,
+      _id: req.body.id,
     });
     console.log(list);
     if (!list) throw createError.NotFound();

@@ -5,7 +5,18 @@ POST http://localhost:8080/addList
 Content-Type: application/json
 
 {
-    "listName":"PRathmesh Kulkarni",
+    "listName":"chintu Kulkarni"
+}
+####
+
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+    "fName":"prathmesh",
+    "email":"prathmesh12@gmail.com",
+    "password":"prathmesh",
+    "mobile":"8421823948"
 }
 ####
 
@@ -13,5 +24,5 @@ DELETE http://localhost:8080/deleteList
 Content-Type: application/json
 
 {
-    "listUniqueNumber":"1"
+    "id":"600c5f79ec9d985954030e5f"
 }
