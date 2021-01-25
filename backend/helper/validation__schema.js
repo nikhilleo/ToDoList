@@ -8,4 +8,9 @@ const userSchema = joi.object({
   listName: joi.string().trim(),
 });
 
-module.exports = { userSchema };
+const listSchema = joi.object({
+  email: joi.string().email().lowercase().required().trim(),
+  list: joi.string().required().trim(),
+});
+
+module.exports = { userSchema, listSchema };
