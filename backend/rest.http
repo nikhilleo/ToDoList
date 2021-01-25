@@ -2,10 +2,11 @@ GET http://localhost:8080/getAllList
 ####
 
 POST http://localhost:8080/addList
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDBlOTYwOWY3NzA1ZjdmOWJlMjI5Y2QiLCJpYXQiOjE2MTE1Njg2NDksImV4cCI6MTYxMTU3OTQ0OSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.VWsj1tdNrnwM3Cdyzzs1O85hX-Sc5zoGUZkDK2hLXNY
 Content-Type: application/json
 
 {
-    "listName":"chintu Kulkarni"
+    "list":"prathmesh Kulkarni"
 }
 ####
 
@@ -14,15 +15,31 @@ Content-Type: application/json
 
 {
     "fName":"prathmesh",
-    "email":"prathmesh12@gmail.com",
+    "email":"prathmesh98882@gmail.com",
     "password":"prathmesh",
-    "mobile":"842823948"
+    "mobile":"8428239444"
+}
+####
+
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+    "email":"prathmesh98882@gmail.com",
+    "password":"prathmesh"
 }
 ####
 
 DELETE http://localhost:8080/deleteList
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDBlOTYwOWY3NzA1ZjdmOWJlMjI5Y2QiLCJpYXQiOjE2MTE1Njg2NDksImV4cCI6MTYxMTU3OTQ0OSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.VWsj1tdNrnwM3Cdyzzs1O85hX-Sc5zoGUZkDK2hLXNY
 Content-Type: application/json
 
 {
     "id":"600c5f79ec9d985954030e5f"
 }
+####
+
+GET http://localhost:8080/getAllList
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDBlOTYwOWY3NzA1ZjdmOWJlMjI5Y2QiLCJpYXQiOjE2MTE1Njg2NDksImV4cCI6MTYxMTU3OTQ0OSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.VWsj1tdNrnwM3Cdyzzs1O85hX-Sc5zoGUZkDK2hLXNY
+
+####
