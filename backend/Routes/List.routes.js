@@ -45,18 +45,31 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/addList", verifyAccessToken, async (req, res, next) => {
   try {
+    console.log(req.payload);
+    const user = req.payload;
     const result = await listSchema.validateAsync({
       email: req.payload.email,
       list: req.body.list,
     });
+
     const isList = await List.findOne({ email: result.email });
     if (!isList) {
       const newList = await new List(result);
       await newList.save();
+      console.log("NewList = ", newList);
+      user.lists_to_add.push(newList._id);
+      await user.save();
+      console.log("user = ", user);
       res.status(200).send("List Added");
     } else {
+      console.log("isList", isList);
       await isList.list.push(result.list);
       await isList.save();
+      console.log("NewList = ", isList);
+      console.log("User = ", user);
+      user.lists_to_add.push(isList._id);
+      await user.save();
+      console.log("user = ", user);
       res.status(200).send("List Added");
     }
   } catch (error) {
