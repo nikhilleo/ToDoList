@@ -32,10 +32,12 @@ var userSchema = new mongoose.Schema({
 
 userSchema.pre("save", async function (next) {
   try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(this.password, salt);
-    this.password = hashedPassword;
-    next();
+    if (this.isModified("password")) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(this.password, salt);
+      this.password = await hashedPassword;
+      next();
+    }
   } catch (error) {
     next(error);
   }
@@ -43,7 +45,8 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods.verifyPassword = async function (password) {
   try {
-    return bcrypt.compare(password, this.password);
+    console.log("Password = ", password, "This pasword = ", this.password);
+    return await bcrypt.compare(password, this.password);
   } catch (error) {
     throw error;
   }
