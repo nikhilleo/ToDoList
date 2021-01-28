@@ -19,8 +19,10 @@ router.post("/register", async (req, res, next) => {
     console.log("yes = ", doesMobileExist);
     if (doesMobileExist) throw createError.Conflict("Mobile number exist");
     const user = await new User(result);
+    console.log("user = ", user);
     const savedUser = await user.save();
     const token = await genAccessToken(savedUser._id);
+    console.log("token = ", token);
     res.status(200).send(token);
   } catch (error) {
     next(error);
@@ -32,9 +34,10 @@ router.post("/login", async (req, res, next) => {
     if (!req.body.email || !req.body.password)
       throw createError.BadRequest("Email, Password both fields are required");
     const user = await User.findOne({ email: req.body.email });
-    console.log(user);
+    console.log("User = ", user);
     if (!user) throw createError.NotFound("User not Found");
     const isPasswordValid = await user.verifyPassword(req.body.password);
+    console.log(isPasswordValid);
     if (!isPasswordValid) throw createError.NotFound("User Not Found");
     const token = await genAccessToken(user._id);
     res.status(200).send(token);
@@ -45,33 +48,15 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/addList", verifyAccessToken, async (req, res, next) => {
   try {
-    console.log(req.payload);
     const user = req.payload;
     const result = await listSchema.validateAsync({
-      email: req.payload.email,
       list: req.body.list,
     });
-
-    const isList = await List.findOne({ email: result.email });
-    if (!isList) {
-      const newList = await new List(result);
-      await newList.save();
-      console.log("NewList = ", newList);
-      user.lists_to_add.push(newList._id);
-      await user.save();
-      console.log("user = ", user);
-      res.status(200).send("List Added");
-    } else {
-      console.log("isList", isList);
-      await isList.list.push(result.list);
-      await isList.save();
-      console.log("NewList = ", isList);
-      console.log("User = ", user);
-      user.lists_to_add.push(isList._id);
-      await user.save();
-      console.log("user = ", user);
-      res.status(200).send("List Added");
-    }
+    const newList = await new List(result);
+    await newList.save();
+    user.lists_to_add.push(newList._id);
+    await user.save();
+    res.status(200).send("list added");
   } catch (error) {
     next(error);
   }
@@ -79,12 +64,14 @@ router.post("/addList", verifyAccessToken, async (req, res, next) => {
 
 router.get("/getAllList", verifyAccessToken, async (req, res, next) => {
   try {
-    console.log(req.payload);
-    const lists = await List.findOne({
-      email: req.payload.email,
+    const user = req.payload;
+    console.log("user = ", user);
+    const lists = await User.findById(user._id).populate({
+      path: "lists_to_add",
     });
-    if (!lists) res.status(200).send("nothing is added");
-    console.log(lists);
+    console.log("lists  = ", lists);
+    if (lists.lists_to_add.length === 0)
+      res.status(200).send("nothing is added");
     res.status(200).send(lists);
   } catch (error) {
     next(error);
@@ -93,9 +80,17 @@ router.get("/getAllList", verifyAccessToken, async (req, res, next) => {
 
 router.delete("/deleteList", verifyAccessToken, async (req, res, next) => {
   try {
-    console.log("User = ", req.payload);
-    const list = List.findOne({ email: req.payload.email });
+    const user = req.payload;
+    const list = await List.findByIdAndDelete(req.body._id);
+    console.log("List = ", list);
     if (!list) throw createError.NotFound();
+    console.log("user = ", user);
+    const index = user.lists_to_add.indexOf(req.body._id);
+    console.log("index = ", index);
+    console.log("list = ", list);
+    await user.lists_to_add.splice(index, 1);
+    await user.save();
+    console.log("user = ", user);
 
     res.send("Successfully Deleted");
   } catch (error) {
