@@ -33,9 +33,13 @@ module.exports = {
           console.log("err = ", err);
           const message =
             err.name == "JsonWebTokenError" ? "Unauthorized" : err.message;
-          throw createError.Unauthorized(message);
+          console.log("message = ", message);
+          next(createError.Unauthorized(message));
         }
+        console.log("payload = ", payload);
         const user = await User.findById(payload.aud);
+        if (!user) next(createError.Unauthorized());
+        console.log("userById = ", user);
         req.payload = user;
         next();
       });

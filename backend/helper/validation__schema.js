@@ -9,7 +9,6 @@ const userSchema = joi.object({
 });
 
 const listSchema = joi.object({
-  email: joi.string().email().lowercase().required().trim(),
   list: joi.string().required().trim(),
 });
 
