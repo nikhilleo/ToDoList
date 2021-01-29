@@ -2,11 +2,11 @@ GET http://localhost:8080/getAllList
 ####
 
 POST http://localhost:8080/addList
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDBlOTYwOWY3NzA1ZjdmOWJlMjI5Y2QiLCJpYXQiOjE2MTE1Njg2NDksImV4cCI6MTYxMTU3OTQ0OSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.VWsj1tdNrnwM3Cdyzzs1O85hX-Sc5zoGUZkDK2hLXNY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDEzOGExMDk3MzAxMjI5ZTBiM2JhNDIiLCJpYXQiOjE2MTE4OTMyNjUsImV4cCI6MTYxMTkwNDA2NSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.b7pSMgTPzTKCXmvcV9x0zmuXXvpCv28-QUCI-yzzFEk
 Content-Type: application/json
 
 {
-    "list":"prathmesh Kulkarni"
+    "list":" prathmesh 5"
 }
 ####
 
@@ -15,9 +15,9 @@ Content-Type: application/json
 
 {
     "fName":"prathmesh",
-    "email":"prathmesh98882@gmail.com",
+    "email":"prathmesh@gmail.com",
     "password":"prathmesh",
-    "mobile":"8428239444"
+    "mobile":"8328239520"
 }
 ####
 
@@ -25,21 +25,20 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "email":"prathmesh98882@gmail.com",
+     "email":"prathmesh@gmail.com",
     "password":"prathmesh"
 }
 ####
 
 DELETE http://localhost:8080/deleteList
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDBlOTYwOWY3NzA1ZjdmOWJlMjI5Y2QiLCJpYXQiOjE2MTE1Njg2NDksImV4cCI6MTYxMTU3OTQ0OSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.VWsj1tdNrnwM3Cdyzzs1O85hX-Sc5zoGUZkDK2hLXNY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDExYTEwYmQ3NzE0NzFiNWM5M2RmZDkiLCJpYXQiOjE2MTE3NjgxMDMsImV4cCI6MTYxMTc3ODkwMywiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.mt5r4IsyS6xlho9q-SF1I-TBQgNUba-lNhdfTSKNP8A
 Content-Type: application/json
 
 {
-    "id":"600c5f79ec9d985954030e5f"
+    "_id":"6011a158d771471b5c93dfdb"
 }
 ####
 
 GET http://localhost:8080/getAllList
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDBlOTYwOWY3NzA1ZjdmOWJlMjI5Y2QiLCJpYXQiOjE2MTE1Njg2NDksImV4cCI6MTYxMTU3OTQ0OSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.VWsj1tdNrnwM3Cdyzzs1O85hX-Sc5zoGUZkDK2hLXNY
-
-####
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDEzOGExMDk3MzAxMjI5ZTBiM2JhNDIiLCJpYXQiOjE2MTE5MzQ0MTMsImV4cCI6MTYxMTk0NTIxMywiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.4F4zmqwAwn51eGiwx5bzv_H9LJZWee6Ft_aj8HafC5E
+#### 

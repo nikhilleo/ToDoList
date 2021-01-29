@@ -1,14 +1,27 @@
 import "./App.css";
-import Input from "./input";
 import React, { useState } from "react";
-import List from "./List";
+import Header from "./Header";
+import AddEvent from "./AddEvents";
+import Login from "./Login";
+import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <Input />
-      <List />
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Header />
+          <Home />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/addEvents">
+          <AddEvent />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

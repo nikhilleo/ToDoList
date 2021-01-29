@@ -65,13 +65,10 @@ router.post("/addList", verifyAccessToken, async (req, res, next) => {
 router.get("/getAllList", verifyAccessToken, async (req, res, next) => {
   try {
     const user = req.payload;
-    const lists = await User.findById(user._id)
-      .populate({
-        path: "lists_to_add",
-      })
-      .sort({ createdAt: -1 });
-    const sortedLists = await List.find().sort({ createdAt: -1 });
-    console.log("sorted lists = ", sortedLists);
+    const lists = await User.findById(user._id).populate({
+      path: "lists_to_add",
+    });
+
     console.log("lists  = ", lists);
     if (lists.lists_to_add.length === 0)
       res.status(200).send("nothing is added");
