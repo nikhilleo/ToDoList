@@ -42,6 +42,7 @@ router.post("/login", async (req, res, next) => {
     const token = await genAccessToken(user._id);
     res.status(200).send(token);
   } catch (error) {
+    console.log("errorrs = ", error);
     next(error);
   }
 });
