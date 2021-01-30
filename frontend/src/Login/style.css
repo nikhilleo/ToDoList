@@ -1,0 +1,27 @@
+.login__form {
+  display: flex;
+  justify-content: center;
+  height: 38vh;
+  align-items: center;
+}
+.sub__login__form {
+  display: flex;
+  flex-direction: column;
+}
+.sub__login__form > input {
+  margin-bottom: 2vh;
+  text-align: center;
+  height: 3vh;
+  border-radius: 20px;
+}
+.sub__login__form > button {
+  margin-bottom: 2vh;
+  padding: 1vh;
+  border-radius: 20px;
+}
+.sub__login__form > button:focus {
+  border: none;
+}
+.sub__login__form > input:focus {
+  border: none;
+}
