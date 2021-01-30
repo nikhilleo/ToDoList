@@ -15,9 +15,11 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/login">
+          <Header />
           <Login />
         </Route>
         <Route exact path="/addEvents">
+          <Header />
           <AddEvent />
         </Route>
       </Switch>
