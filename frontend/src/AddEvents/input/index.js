@@ -4,6 +4,7 @@ import "./style.css";
 
 function Index(props) {
   const [input, setInput] = useState();
+  const token = localStorage.getItem("token");
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -12,18 +13,33 @@ function Index(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/addList", { listName: input })
+      .post(
+        "/addList",
+        { list: input },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log("res = ", res);
+        alert(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
+        console.log(err.response.data.message);
       });
   };
   return (
-    <div>
+    <div className="list__form">
       <form className="Head" onSubmit={handleSubmit}>
-        <input type="text" value={input} onChange={handleChange} />
+        <input
+          type="text"
+          value={input}
+          placeholder="Add Lists"
+          onChange={handleChange}
+        />
         <button type="submit">Submit</button>
       </form>
     </div>

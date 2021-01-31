@@ -1,8 +1,27 @@
+.list__form {
+  display: flex;
+  justify-content: center;
+  height: 38vh;
+  align-items: center;
+}
 .Head {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 39vh;
-    background: lightblue;
-  }
-  
+  display: flex;
+  flex-direction: column;
+}
+.Head > input {
+  margin-bottom: 2vh;
+  text-align: center;
+  height: 3vh;
+  border-radius: 20px;
+}
+.Head > button {
+  margin-bottom: 2vh;
+  padding: 1vh;
+  border-radius: 20px;
+}
+.Head > button:focus {
+  border: none;
+}
+.Head > input:focus {
+  border: none;
+}

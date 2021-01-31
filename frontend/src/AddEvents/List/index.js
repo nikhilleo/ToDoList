@@ -4,13 +4,14 @@ import "./style.css";
 
 function Index(props) {
   var [inputValue, setInputValue] = useState();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get("/getAllList")
+      .get("/getAllList", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         console.log(res.data);
-        setInputValue(res.data);
+        setInputValue(res.data.lists_to_add);
       })
       .catch((err) => {
         console.log(err.response);
@@ -18,7 +19,20 @@ function Index(props) {
   }, []);
   console.log(inputValue);
 
-  const handleCloseClick = (index) => {};
+  const handleCloseClick = (index) => {
+    const id = inputValue[index]._id;
+    axios
+      .delete("/deleteList", {
+        headers: { Authorization: `Bearer ${token}` },
+        data: { _id: id },
+      })
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
   return (
     <div className="List">
       {inputValue ? (
@@ -26,7 +40,7 @@ function Index(props) {
           {inputValue?.map?.((item, index) => (
             <tbody key={index}>
               <td>{index}</td>
-              <td>{item.listName}</td>
+              <td>{item.list}</td>
               <td
                 className="close"
                 onClick={() => {
