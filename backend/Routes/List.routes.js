@@ -40,7 +40,13 @@ router.post("/login", async (req, res, next) => {
     console.log(isPasswordValid);
     if (!isPasswordValid) throw createError.NotFound("User Not Found");
     const token = await genAccessToken(user._id);
-    res.status(200).send(token);
+    const sendUser = {
+      fName: user.fName,
+      email: user.email,
+      mobile: user.mobile,
+      lists: user.lists_to_add,
+    };
+    res.status(200).json({ token, user: sendUser });
   } catch (error) {
     console.log("errorrs = ", error);
     next(error);
@@ -82,6 +88,7 @@ router.get("/getAllList", verifyAccessToken, async (req, res, next) => {
 router.delete("/deleteList", verifyAccessToken, async (req, res, next) => {
   try {
     const user = req.payload;
+    console.log(req.body);
     const list = await List.findByIdAndDelete(req.body._id);
     console.log("List = ", list);
     if (!list) throw createError.NotFound();
@@ -94,6 +101,14 @@ router.delete("/deleteList", verifyAccessToken, async (req, res, next) => {
     console.log("user = ", user);
 
     res.send("Successfully Deleted");
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/getUserDetails", verifyAccessToken, async (req, res, next) => {
+  try {
+    res.status(200).send(req.payload);
   } catch (error) {
     next(error);
   }
