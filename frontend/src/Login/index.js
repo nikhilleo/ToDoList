@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import axios from "../axios";
-function Index() {
+import { useHistory } from "react-router-dom";
+function Index(props) {
+  const history = useHistory();
+  useEffect(() => {
+    history.push("/profile");
+  }, []);
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -15,10 +20,12 @@ function Index() {
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", res.data);
+        props.setUser(res.data.user);
+        history.push("/");
       })
       .catch((err) => {
         console.log(err.response);
-        alert(err.message);
+        alert(err.response.data.message);
       });
   };
 
@@ -32,13 +39,14 @@ function Index() {
       .post("/login", data)
       .then((res) => {
         console.log(res);
-        if (!res.data.status == 200 || !res.data.status == 201)
-          alert(res.data.message);
-        localStorage.setItem("token", res.data);
+        localStorage.setItem("token", res.data.token);
+        props.setUser(res.data.user);
+        history.push("/");
+        alert("Successfully logged in");
       })
       .catch((err) => {
         console.log(err.response);
-        alert(err.message);
+        alert(err.response.data.message);
       });
   };
 

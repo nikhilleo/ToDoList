@@ -1,0 +1,55 @@
+.profile__form {
+  display: flex;
+  justify-content: center;
+  height: 91vh;
+  align-items: center;
+  flex-direction: column;
+}
+.sub__profile__form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7vh;
+}
+.sub__profile__form > div > input {
+  margin-bottom: 2vh;
+  text-align: center;
+  height: 3vh;
+  border-radius: 20px;
+}
+.submit__request {
+  display: none;
+  flex-direction: column;
+  margin-bottom: 7vh;
+}
+
+.submit__request.active {
+  display: flex;
+  position: absolute;
+  margin-left: 2vw;
+  margin-bottom: -48vh;
+}
+
+.submit__request > input {
+  margin-bottom: 2vh;
+  text-align: center;
+  height: 3vh;
+  border-radius: 20px;
+}
+
+.submit__request > button {
+  margin-bottom: 2vh;
+  padding: 1vh;
+  border-radius: 20px;
+}
+.sub__profile__form > div > button:focus {
+  border: none;
+}
+.sub__profile__form > div > input:focus {
+  border: none;
+}
+.submit__request > button:focus {
+  border: none;
+}
+.submit__request > input:focus {
+  border: none;
+}
