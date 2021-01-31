@@ -22,8 +22,8 @@ module.exports = {
   },
   verifyAccessToken: async (req, res, next) => {
     try {
+      console.log(req.headers);
       if (!req.headers["authorization"]) throw createError.BadRequest();
-
       const bodyToken = req.headers["authorization"];
       const splitToken = bodyToken.split(" ");
       console.log("token = ", splitToken);
@@ -37,7 +37,7 @@ module.exports = {
           next(createError.Unauthorized(message));
         }
         console.log("payload = ", payload);
-        const user = await User.findById(payload.aud);
+        const user = await User.findById(payload.aud, { password: 0 });
         if (!user) next(createError.Unauthorized());
         console.log("userById = ", user);
         req.payload = user;
