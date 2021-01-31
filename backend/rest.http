@@ -5,7 +5,7 @@ POST http://localhost:8080/addList
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDEzOGExMDk3MzAxMjI5ZTBiM2JhNDIiLCJpYXQiOjE2MTE4OTMyNjUsImV4cCI6MTYxMTkwNDA2NSwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.b7pSMgTPzTKCXmvcV9x0zmuXXvpCv28-QUCI-yzzFEk
 Content-Type: application/json
 
-{
+{ 
     "list":" prathmesh 5"
 }
 ####
@@ -40,5 +40,5 @@ Content-Type: application/json
 ####
 
 GET http://localhost:8080/getAllList
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDEzOGExMDk3MzAxMjI5ZTBiM2JhNDIiLCJpYXQiOjE2MTE5MzQ0MTMsImV4cCI6MTYxMTk0NTIxMywiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.4F4zmqwAwn51eGiwx5bzv_H9LJZWee6Ft_aj8HafC5E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDE1OGU5ZmUyODllZDRhYWE4M2FiNGQiLCJpYXQiOjE2MTIwODExMzQsImV4cCI6MTYxMjA5MTkzNCwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.tHZ4VYI8UXu-wQtjDD9HuJRD59ErjeBdv7Oc4wW_p90
 #### 
