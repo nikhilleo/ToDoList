@@ -4,9 +4,6 @@ import axios from "../axios";
 import { useHistory } from "react-router-dom";
 function Index(props) {
   const history = useHistory();
-  useEffect(() => {
-    history.push("/profile");
-  }, []);
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     const data = {
