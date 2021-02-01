@@ -20,9 +20,8 @@ function Index(props) {
               handleClick("Name");
             }}
           >
-            {" "}
             ⬇️
-          </span>{" "}
+          </span>
           <input type="text" value={props.user.fName} />
         </div>
         <div>
@@ -32,9 +31,8 @@ function Index(props) {
               handleClick("Email");
             }}
           >
-            {" "}
             ⬇️
-          </span>{" "}
+          </span>
           <input type="text" value={props.user.email} />
         </div>
         <div>
@@ -44,9 +42,8 @@ function Index(props) {
               handleClick("Password");
             }}
           >
-            {" "}
             ⬇️
-          </span>{" "}
+          </span>
           <input type="password" placeholder="Enter Your Password" />
         </div>
         <div>
@@ -56,9 +53,8 @@ function Index(props) {
               handleClick("Mobile");
             }}
           >
-            {" "}
             ⬇️
-          </span>{" "}
+          </span>
           <input type="text" value={props.user.mobile} />
         </div>
       </div>
