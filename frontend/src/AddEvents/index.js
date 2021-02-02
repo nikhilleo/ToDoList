@@ -4,6 +4,7 @@ import Input from "./input";
 import "./style.css";
 
 function Index() {
+  console.log("handleSubmit");
   return (
     <div>
       <Input />
