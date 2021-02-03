@@ -8,7 +8,9 @@ function Index(props) {
     input.placeholder = `Change  ${val}`;
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    console.log('handleSubmit')
+  };
 
   return (
     <div className="profile__form">
