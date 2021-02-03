@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./style.css";
 
 function Index(props) {
+  console.log("handleSubmit");
   console.log("props = ", props);
   const history = useHistory();
   const handleLogout = () => {
