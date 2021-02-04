@@ -4,6 +4,11 @@ const User = require("../models/user.model");
 const List = require("../models/list.model");
 const { userSchema, listSchema } = require("../helper/validation__schema");
 const { genAccessToken, verifyAccessToken } = require("../helper/jwt_helper");
+require("dotenv").config();
+const client = require("twilio")(
+  process.env.ACCOUNTSID,
+  process.env.TWILIOAUTHTOKEN
+);
 
 router.post("/register", async (req, res, next) => {
   try {
@@ -109,6 +114,39 @@ router.delete("/deleteList", verifyAccessToken, async (req, res, next) => {
 router.get("/getUserDetails", verifyAccessToken, async (req, res, next) => {
   try {
     res.status(200).send(req.payload);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/sendMessage", (req, res) => {
+  console.log(req.body);
+  try {
+    client.verify
+      .services(process.env.SERVICEID)
+      .verifications.create({
+        to: `+91${req.body.mobile}`,
+        channel: req.body.channel,
+      })
+      .then((data) => {
+        res.status(200).send(data);
+      });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/verifyOtp", (req, res) => {
+  try {
+    client.verify
+      .services(process.env.SERVICEID)
+      .verificationChecks.create({
+        to: `+91${req.body.mobile}`,
+        code: req.body.code,
+      })
+      .then((data) => {
+        res.status(200).send(data);
+      });
   } catch (error) {
     next(error);
   }
