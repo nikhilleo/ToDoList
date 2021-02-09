@@ -42,3 +42,21 @@ Content-Type: application/json
 GET http://localhost:8080/getAllList
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiI2MDE1OGU5ZmUyODllZDRhYWE4M2FiNGQiLCJpYXQiOjE2MTIwODExMzQsImV4cCI6MTYxMjA5MTkzNCwiaXNzIjoiUHJhdGhtZXNoIEt1bGthcm5pIn0.tHZ4VYI8UXu-wQtjDD9HuJRD59ErjeBdv7Oc4wW_p90
 #### 
+
+GET http://localhost:8080/sendMessage
+Content-Type: application/json
+
+{
+    "mobile":"8421723980",
+    "channel":"sms"
+}
+#### 
+
+GET http://localhost:8080/verifyOtp
+Content-Type: application/json
+
+{
+    "mobile":"8421723980",
+    "code":"125423"
+}
+#### 
