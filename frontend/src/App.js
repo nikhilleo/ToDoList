@@ -15,7 +15,7 @@ import axios from "./axios";
 
 function App() {
   const [user, setUser] = useState();
-    console.log('App Started');
+    console.log('App Starte');
   useEffect(() => {
     const token = localStorage.getItem("token");
     console.log(token);
