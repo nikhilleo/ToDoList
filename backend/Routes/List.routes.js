@@ -137,6 +137,7 @@ router.get("/sendMessage", (req, res) => {
 });
 
 router.get("/verifyOtp", (req, res) => {
+  console.log("Appd started");
   try {
     client.verify
       .services(process.env.SERVICEID)
