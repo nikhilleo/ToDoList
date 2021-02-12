@@ -4,6 +4,7 @@ require("dotenv").config();
 const User = require("../models/user.model");
 
 module.exports = {
+  console.log("Appd started");
   genAccessToken: async (userID) => {
     return new Promise((resolve, reject) => {
       const payload = {
