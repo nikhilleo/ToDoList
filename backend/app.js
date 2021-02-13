@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+console.log("Appd started");
 app.use(list);
 
 app.use((req, res, next) => {
