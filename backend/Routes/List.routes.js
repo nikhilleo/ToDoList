@@ -82,6 +82,7 @@ router.get("/getAllList", verifyAccessToken, async (req, res, next) => {
     });
 
     console.log("lists  = ", lists);
+    console.log("lists  = ", lists);
     if (lists.lists_to_add.length === 0)
       res.status(200).send("nothing is added");
     res.status(200).send(lists);
